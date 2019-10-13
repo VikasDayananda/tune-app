@@ -1,25 +1,53 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
+    "outDir": "dist",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "traceResolution": true,
+    "sourceMap": true,
+    "noImplicitAny": false,
     "module": "esnext",
+    "target": "es5",
+    "jsx": "react",
+    "lib": [
+      "es5",
+      "es6",
+      "dom"
+    ],
+//    "declaration": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "types": [],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "rootDirs": [
+      "src",
+      "stories"
+    ],
+    "baseUrl": "src",
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react"
+    "noEmit": true
   },
   "include": [
-    "src"
-  ]
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "reportFiles": [
+      "./src/**/*"
+    ]
+  },
+  "allowJs": true
 }
