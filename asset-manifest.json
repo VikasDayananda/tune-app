@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/VikasDayananda/tune-app/static/css/main.b736f213.chunk.css",
-    "main.js": "/VikasDayananda/tune-app/static/js/main.3e61610e.chunk.js",
-    "main.js.map": "/VikasDayananda/tune-app/static/js/main.3e61610e.chunk.js.map",
-    "runtime-main.js": "/VikasDayananda/tune-app/static/js/runtime-main.d96e0166.js",
-    "runtime-main.js.map": "/VikasDayananda/tune-app/static/js/runtime-main.d96e0166.js.map",
-    "static/js/2.dace8bc7.chunk.js": "/VikasDayananda/tune-app/static/js/2.dace8bc7.chunk.js",
-    "static/js/2.dace8bc7.chunk.js.map": "/VikasDayananda/tune-app/static/js/2.dace8bc7.chunk.js.map",
-    "index.html": "/VikasDayananda/tune-app/index.html",
-    "precache-manifest.4996689b80ae757b0be9e81d5bd34bfa.js": "/VikasDayananda/tune-app/precache-manifest.4996689b80ae757b0be9e81d5bd34bfa.js",
-    "service-worker.js": "/VikasDayananda/tune-app/service-worker.js",
-    "static/css/main.b736f213.chunk.css.map": "/VikasDayananda/tune-app/static/css/main.b736f213.chunk.css.map"
+    "main.css": "/tune-app/static/css/main.b736f213.chunk.css",
+    "main.js": "/tune-app/static/js/main.3e61610e.chunk.js",
+    "main.js.map": "/tune-app/static/js/main.3e61610e.chunk.js.map",
+    "runtime-main.js": "/tune-app/static/js/runtime-main.e7c96ecd.js",
+    "runtime-main.js.map": "/tune-app/static/js/runtime-main.e7c96ecd.js.map",
+    "static/js/2.dace8bc7.chunk.js": "/tune-app/static/js/2.dace8bc7.chunk.js",
+    "static/js/2.dace8bc7.chunk.js.map": "/tune-app/static/js/2.dace8bc7.chunk.js.map",
+    "index.html": "/tune-app/index.html",
+    "precache-manifest.cbba45107df28204db6c152350a84154.js": "/tune-app/precache-manifest.cbba45107df28204db6c152350a84154.js",
+    "service-worker.js": "/tune-app/service-worker.js",
+    "static/css/main.b736f213.chunk.css.map": "/tune-app/static/css/main.b736f213.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.d96e0166.js",
+    "static/js/runtime-main.e7c96ecd.js",
     "static/js/2.dace8bc7.chunk.js",
     "static/css/main.b736f213.chunk.css",
     "static/js/main.3e61610e.chunk.js"
