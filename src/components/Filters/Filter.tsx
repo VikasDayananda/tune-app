@@ -8,7 +8,7 @@ import Select from '@material-ui/core/Select';
 import {createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles";
 
 
-const theme = (props) => createMuiTheme({
+const theme = (props?:any) => createMuiTheme({
 
         overrides: {
             MuiFormControl: {
@@ -32,23 +32,23 @@ const theme = (props) => createMuiTheme({
                 root: {
                     color: "white",
                     "&$focused": {
-                        color: props.theme == "graph" ? "black" : "white"
+                        color: props.theme === "graph" ? "black" : "white"
                     }
                 },
                 formControl: {
-                    color: props.theme == "graph" ? "black" : "white"
+                    color: props.theme === "graph" ? "black" : "white"
 
                 }
             },
             MuiInputBase: {
                 input: {
-                    color: props.theme == "graph" ? "black" : "white",
+                    color: props.theme === "graph" ? "black" : "white",
                     "&:disabled": {
-                        color: props.theme == "graph" ? "black" : "white"
+                        color: props.theme === "graph" ? "black" : "white"
                     }
                 },
                 root: {
-                    color: props.theme == "graph" ? "black" : "white"
+                    color: props.theme === "graph" ? "black" : "white"
                 }
 
             },
@@ -63,7 +63,7 @@ const theme = (props) => createMuiTheme({
             },
             MuiSelect: {
                 icon: {
-                    color: props.theme == "graph" ? "black" : "white"
+                    color: props.theme === "graph" ? "black" : "white"
                 }
             }
         }
@@ -112,7 +112,7 @@ export const Filter = (props: any) => {
                 }
                 <Select
                     className={classes.input}
-                    value={state.sortBy}
+                    value={state.sortBy || ""}
                     onChange={handleChange('sortBy')}
                     input={<Input id="sortBy"/>}
                 >
@@ -123,7 +123,7 @@ export const Filter = (props: any) => {
                     }
 
                     {props.sortByOptions.map(sort => {
-                        return <MenuItem value={sort.id}>{sort.name}</MenuItem>
+                        return <MenuItem value={sort.id}  key={sort.id}>{sort.name}</MenuItem>
                     })}
 
                 </Select>

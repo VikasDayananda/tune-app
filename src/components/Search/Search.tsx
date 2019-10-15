@@ -47,7 +47,7 @@ export const Search = (props: any) => {
                 id="search"
                 placeholder="Enter Name"
                 label="Search By"
-                value={props.searchName}
+                value={props.searchName || ""}
                 type={"text"}
                 margin="normal"
                 className="field"

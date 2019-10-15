@@ -26,7 +26,7 @@ class Card extends React.Component<any, any> {
     }
 
     render() {
-        let props = this.props;
+        let {user, data, showUserMetrics} = this.props;
         let {image} = this.state;
 
 
@@ -35,18 +35,18 @@ class Card extends React.Component<any, any> {
                 <div className="card">
                     <div className={"flex"}>
                         <div className="card-img-wrapper">
-                            {image && props.user.avatar ?
-                                <img className="poster" src={props.user.avatar} alt="Avatar" onError={this.onError}/>
+                            {image && user.avatar ?
+                                <img className="poster" src={user.avatar} alt="Avatar" onError={this.onError}/>
                                 :
                                 <div className={"avatar-circle " + getRandomColor()}>
-                                    <span className="initials">{props.user.name[0]}</span>
+                                    <span className="initials">{user.name[0]}</span>
                                 </div>
                             }
                         </div>
                         <div>
                             <div className="card-name-wrapper">
-                                <span className={"name"}>{props.user.name}</span><br/>
-                                <span className={"title"}>{props.user.occupation}</span><br/><br/>
+                                <span className={"name"}>{user.name}</span><br/>
+                                <span className={"title"}>{user.occupation}</span><br/><br/>
                             </div>
                         </div>
 
@@ -54,16 +54,17 @@ class Card extends React.Component<any, any> {
                     <div className="flex">
                         <div style={{margin: "15px 10px 10px 10px"}}>
                             <img src={img} className={"image-button image-hover-highlight"}
-                                 onClick={() => props.showUserMetrics(props.user)}/>
+                                 alt={"Avatar"}
+                                 onClick={() => showUserMetrics(user)}/>
                             <a href={"#"} className={"link-button"}
-                               onClick={() => props.showUserMetrics(props.user)}>Click to see data</a>
+                               onClick={() => showUserMetrics(user)}>Click to see data</a>
                         </div>
                         <div className="stats">
-                            <span className="impressions">{props.data.totoalImpressions}</span><br/>
+                            <span className="impressions">{data.totoalImpressions}</span><br/>
                             <span className="activity">{"Impressions"}</span><br/>
-                            <span className="conversions">{props.data.totalConversions}</span><br/>
+                            <span className="conversions">{data.totalConversions}</span><br/>
                             <span className="activity">{"Conversions"}</span><br/>
-                            <div className="revenue">${parseNumber(props.data.revenue)}</div>
+                            <div className="revenue">${parseNumber(data.totalRevenue)}</div>
                             <br/>
                         </div>
                     </div>

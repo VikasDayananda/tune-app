@@ -33,6 +33,24 @@ class App extends React.Component<any, any> {
     }
 
     private parseData = () => {
+
+        // Aggregate the users.json and logs.json into single object
+
+        // userobj=[
+        //     userdId:{
+        //         totoalImpressions:0,
+        //         totalConversions:0,
+        //         totalRevenue:0,
+        //         graphData:[
+        //             {
+        //                // user logs
+        //             }
+        //         ]
+        //
+        //     }
+        // ]
+
+
         let map = new Map();
         LogData.forEach(data => {
             if (map.has(data.user_id)) {
@@ -41,7 +59,7 @@ class App extends React.Component<any, any> {
                     userData.totoalImpressions++;
                 } else {
                     userData.totalConversions++;
-                    userData.revenue += data.revenue;
+                    userData.totalRevenue += data.revenue;
                 }
                 userData.graphData.push(data)
                 map.set(data.user_id, userData)
@@ -50,14 +68,14 @@ class App extends React.Component<any, any> {
                 let userData: any = {
                     totoalImpressions: 0,
                     totalConversions: 0,
-                    revenue: 0,
+                    totalRevenue: 0,
                     graphData: []
                 }
                 if (data.type === "impression") {
                     userData.totoalImpressions++;
                 } else {
                     userData.totalConversions++;
-                    userData.revenue += data.revenue;
+                    userData.totalRevenue += data.revenue;
 
                 }
                 userData.graphData.push(data)
@@ -117,10 +135,10 @@ class App extends React.Component<any, any> {
             userData.sort(function (a, b) {
                 let userA = data.get(a.id)
                 let userB = data.get(b.id)
-                if (userA.revenue > userB.revenue) {
+                if (userA.totalRevenue > userB.totalRevenue) {
                     return -1;
                 }
-                if (userA.revenue < userB.revenue) {
+                if (userA.totalRevenue < userB.totalRevenue) {
                     return 1;
                 }
                 return 0;
@@ -147,12 +165,11 @@ class App extends React.Component<any, any> {
 
     componentDidMount() {
         this.parseData()
-
     }
 
 
     render() {
-        let {userData} = this.state
+        let {userData, search, data, showGraph, selectedUserId} = this.state;
 
 
         return (
@@ -162,7 +179,7 @@ class App extends React.Component<any, any> {
                     <div className="row" style={{marginLeft: "10px"}}>
                         <div className="col-md-4 col-lg-3 col-sm-12">
                             <Search onChange={this.onChangeName}
-                                    searchName={this.state.search}/>
+                                    searchName={search}/>
                         </div>
                         <div className="col-md-4 col-lg-3 col-sm-12">
                             <Filter
@@ -192,31 +209,29 @@ class App extends React.Component<any, any> {
                         </div>
                     </div>
 
-                    {!isEmpty(this.state.data) &&
+                    {!isEmpty(data) &&
                     <div className="row">
                         {userData.map(user => {
-                            return <Card user={user}
-                                         data={this.state.data.get(user.id)}
+                            return <Card  key={user.id} user={user}
+                                         data={data.get(user.id)}
                                          showUserMetrics={this.showUserMetrics}
                             />
                         })}
                     </div>
                     }
-                    {this.state.showGraph &&
+                    {showGraph &&
                     <GraphModal
-                        open={this.state.showGraph}
+                        open={showGraph}
                         toggleModal={this.toggleModal}
-                        userData={this.state.userData.find(user => user.id === this.state.selectedUserId)}
-                        graphData={this.state.data.get(this.state.selectedUserId).graphData}
+                        userData={userData.find(user => user.id === selectedUserId)}
+                        graphData={data.get(selectedUserId).graphData}
 
                     />
                     }
-
                 </div>
                 <Footer/>
             </div>
-        )
-            ;
+        );
     }
 }
 

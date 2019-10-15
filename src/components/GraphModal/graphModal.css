@@ -4,3 +4,8 @@
     display: inline-table;
     margin-top: -10px;
 }
+
+.graph-info{
+    text-align: center;
+    display: block;
+}

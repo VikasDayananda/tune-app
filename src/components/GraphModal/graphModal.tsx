@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect} from "react";
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {Filter} from "../Filters/Filter"
@@ -20,6 +19,7 @@ const theme = () => createMuiTheme({
     }
 });
 
+// There is only 2 months of data for 2013. So Periods can be either 4/2013 or 5/2013.
 
 export const GraphModal = (props: any) => {
     const [state, setState] = React.useState({
@@ -44,7 +44,7 @@ export const GraphModal = (props: any) => {
             var month = time.getUTCMonth() + 1; //months from 1-12
             if (month == period) {
                 var day = time.getUTCDate();
-                if (ad.type == sortBy) {
+                if (ad.type === sortBy) {
                     if (dataMap.get(day)) {
                         dataMap.set(day, dataMap.get(day) + 1)
                     } else {
@@ -138,10 +138,8 @@ export const GraphModal = (props: any) => {
                 </DialogTitle>
                 <DialogContent>
                     <ChartComponent data={state.graphData} category={state.sortBy}/>
+                    <span className="graph-info">( Hover on tne graph to see the values )</span>
                 </DialogContent>
-                <DialogActions>
-
-                </DialogActions>
             </Dialog>
         </MuiThemeProvider>
     );
