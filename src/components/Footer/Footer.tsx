@@ -7,7 +7,8 @@ class Footer extends Component {
 
             <div className="footer">
                 <p>
-                    🚀 Built with <a target="_blank" href="https://facebook.github.io/react/">React</a>🚀
+                    🚀Built with <a target="_blank" href="https://facebook.github.io/react/">React</a> and <a
+                    target="_blank" href="https://react-google-charts.com/">Google Charts</a>&nbsp;🚀
                 </p>
                 <p>
                     See source code on <a target="_blank"

@@ -4,40 +4,21 @@ import Card from "./components/Card/Card";
 import Footer from "./components/Footer/Footer";
 import {Search} from "./components/Search/Search";
 import {Filter} from "./components/Filters/Filter";
-
-import {createMuiTheme} from "@material-ui/core/styles";
 import {GraphModal} from "./components/GraphModal/graphModal";
+import {isEmpty} from "./constants";
 
 declare var require;
 var UserData = require("./data/users.json");
 var LogData = require("./data/logs.json");
 
 
-const theme = () => createMuiTheme({
-
-        overrides: {
-
-            MuiPaper: {
-                root: {
-                    width: "60%",
-                    height: "70%"
-                },
-
-            },
-        }
-    })
-;
-
 class App extends React.Component<any, any> {
 
-    toggleFilters = () => {
-        this.setState({openFilters: !this.state.openFilters});
-    };
-    showUserMetrics = (user) => {
+    private showUserMetrics = (user) => {
         this.setState({selectedUserId: user.id, showGraph: true})
 
     }
-    toggleModal = () => {
+    private toggleModal = () => {
         this.setState({showGraph: !this.state.showGraph})
     }
     private onChangeName = (e) => {
@@ -50,11 +31,8 @@ class App extends React.Component<any, any> {
 
 
     }
-    private searchName = () => {
 
-
-    }
-    private parseData = (data) => {
+    private parseData = () => {
         let map = new Map();
         LogData.forEach(data => {
             if (map.has(data.user_id)) {
@@ -88,7 +66,8 @@ class App extends React.Component<any, any> {
         })
         this.setState({data: map})
     }
-    private onApply = (sortBy, period) => {
+
+    private onApply = (sortBy) => {
         debugger
         if (!sortBy) {
             let userData = [...UserData]
@@ -108,7 +87,7 @@ class App extends React.Component<any, any> {
                 return 0;
             })
 
-        } else if (sortBy === "impressions") {
+        } else if (sortBy === "impression") {
             userData.sort(function (a, b) {
                 let userA = data.get(a.id)
                 let userB = data.get(b.id)
@@ -121,7 +100,7 @@ class App extends React.Component<any, any> {
                 return 0;
 
             })
-        } else if (sortBy === "conversions") {
+        } else if (sortBy === "conversion") {
             userData.sort(function (a, b) {
                 let userA = data.get(a.id)
                 let userB = data.get(b.id)
@@ -150,8 +129,8 @@ class App extends React.Component<any, any> {
         }
         this.setState({userData, openFilters: false})
 
-    }
-    private filters: React.RefObject<any>;
+    };
+
 
     constructor(props) {
         super(props);
@@ -161,21 +140,16 @@ class App extends React.Component<any, any> {
             search: "",
             openFilters: false,
             showGraph: false,
-            selectedUserId: 78
+            selectedUserId: null
         }
-        this.filters = React.createRef<any>();
 
     }
 
     componentDidMount() {
-        this.parseData(LogData)
+        this.parseData()
 
     }
 
-    isEmpty(obj) {
-        return Object.keys(obj).length === 0 && obj.constructor === Object
-
-    }
 
     render() {
         let {userData} = this.state
@@ -187,7 +161,7 @@ class App extends React.Component<any, any> {
                 <div className="inner-container">
                     <div className="row" style={{marginLeft: "10px"}}>
                         <div className="col-md-4 col-lg-3 col-sm-12">
-                            <Search onSearch={this.searchName} onChange={this.onChangeName}
+                            <Search onChange={this.onChangeName}
                                     searchName={this.state.search}/>
                         </div>
                         <div className="col-md-4 col-lg-3 col-sm-12">
@@ -200,12 +174,12 @@ class App extends React.Component<any, any> {
                                         id: "name"
                                     },
                                     {
-                                        name: "Impressions",
-                                        id: "impressions"
+                                        name: "Impression",
+                                        id: "impression"
                                     },
                                     {
-                                        name: "Conversions",
-                                        id: "conversions"
+                                        name: "Conversion",
+                                        id: "conversion"
                                     },
                                     {
                                         name: "Revenue",
@@ -218,7 +192,7 @@ class App extends React.Component<any, any> {
                         </div>
                     </div>
 
-                    {!this.isEmpty(this.state.data) &&
+                    {!isEmpty(this.state.data) &&
                     <div className="row">
                         {userData.map(user => {
                             return <Card user={user}

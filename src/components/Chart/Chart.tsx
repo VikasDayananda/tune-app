@@ -18,7 +18,6 @@ const override = css`
 
 export const ChartComponent = (props: any) => {
 
-
     return (
         <div className={"chart-div"}>
             <Chart

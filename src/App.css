@@ -35,12 +35,9 @@ h1.body-head {
 
     text-decoration: underline;
     letter-spacing: 4px;
-    /*https://css-tricks.com/3d-text-tower/*/
     text-shadow: 1px 1px 1px red,
     1px 1px 1px red,
     1px 1px 1px red;
-
-    /*font-family: 'Faster One', cursive;*/
     font-family: 'Monoton', cursive;
 
 }

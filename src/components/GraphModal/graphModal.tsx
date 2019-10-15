@@ -23,7 +23,8 @@ const theme = () => createMuiTheme({
 
 export const GraphModal = (props: any) => {
     const [state, setState] = React.useState({
-        sortBy: props.default || null,
+        sortBy: 'conversion',
+        period: 4,
         graphData: []
     });
     let data = props.graphData
@@ -33,18 +34,17 @@ export const GraphModal = (props: any) => {
     }
 
     useEffect(() => {
-        conversionGraph()
+        countGraph(state.sortBy, state.period)
     }, []);
 
 
-    const impressionGraph = () => {
+    const countGraph = (sortBy, period) => {
         data.forEach(ad => {
             let time = new Date(ad.time)
             var month = time.getUTCMonth() + 1; //months from 1-12
-            if (month == 4) {
+            if (month == period) {
                 var day = time.getUTCDate();
-                var md = month + "/" + day
-                if (ad.type == "impression") {
+                if (ad.type == sortBy) {
                     if (dataMap.get(day)) {
                         dataMap.set(day, dataMap.get(day) + 1)
                     } else {
@@ -53,35 +53,16 @@ export const GraphModal = (props: any) => {
                 }
             }
         });
-        let stateData: any = [['x', 'impression']].concat(Array.from(dataMap.entries()))
-        setState({...state, graphData: stateData});
+        let stateData: any = [['x', sortBy]].concat(Array.from(dataMap.entries()))
+        setState({...state, graphData: stateData, sortBy, period});
     }
-    const conversionGraph = () => {
+
+    const revenueGraph = (period) => {
         data.forEach(ad => {
             let time = new Date(ad.time)
             var month = time.getUTCMonth() + 1; //months from 1-12
-            if (month == 4) {
+            if (month == period) {
                 var day = time.getUTCDate();
-                var md = month + "/" + day
-                if (ad.type == "conversion") {
-                    if (dataMap.get(day)) {
-                        dataMap.set(day, dataMap.get(day) + 1)
-                    } else {
-                        dataMap.set(day, 1)
-                    }
-                }
-            }
-        });
-        let stateData: any = [['x', 'conversion']].concat(Array.from(dataMap.entries()))
-        setState({...state, graphData: stateData});
-    }
-    const revenueGraph = () => {
-        data.forEach(ad => {
-            let time = new Date(ad.time)
-            var month = time.getUTCMonth() + 1; //months from 1-12
-            if (month == 4) {
-                var day = time.getUTCDate();
-                var md = month + "/" + day
                 if (dataMap.get(day)) {
                     dataMap.set(day, dataMap.get(day) + ad.revenue)
                 } else {
@@ -90,25 +71,17 @@ export const GraphModal = (props: any) => {
             }
         });
         let stateData: any = [['x', 'revenue']].concat(Array.from(dataMap.entries()))
-        setState({...state, graphData: stateData});
+        setState({...state, graphData: stateData, sortBy: "revenue", period});
     }
-    const processData = category => {
-        switch (category) {
-            case "impressions":
-                impressionGraph()
-                break;
-            case "conversions":
-                conversionGraph()
-                break;
-            case "revenue":
-                revenueGraph()
-                break;
-            default:
-                break
 
+    const processData = (category ?: any, period?: any) => {
+        let sortBy = category || state.sortBy
+        let month = period || state.period
+        if (sortBy === "revenue") {
+            revenueGraph(month)
+        } else {
+            countGraph(sortBy, month)
         }
-
-
     };
 
     return (
@@ -126,24 +99,43 @@ export const GraphModal = (props: any) => {
                         <Filter
                             none={false}
                             theme={"graph"}
-                            default={"conversions"}
+                            default={"conversion"}
                             sortByOptions={[
                                 {
-                                    name: "Impressions",
-                                    id: "impressions"
+                                    name: "Impression",
+                                    id: "impression"
                                 },
                                 {
-                                    name: "Conversions",
-                                    id: "conversions"
+                                    name: "Conversion",
+                                    id: "conversion"
                                 },
                                 {
                                     name: "Revenue",
                                     id: "revenue"
                                 }
                             ]}
-                            onApply={processData}
+                            onApply={(cat) => processData(cat, null)}
 
-                        /></div> Per day for {props.userData.name}</DialogTitle>
+                        /></div> Per day for {props.userData.name} during the period
+                    <div className={"filter-dropdown-graph"}>
+                        <Filter
+                            none={false}
+                            theme={"graph"}
+                            default={"4"}
+                            sortByOptions={[
+                                {
+                                    name: "April 2013",
+                                    id: "4"
+                                },
+                                {
+                                    name: "May 2013",
+                                    id: "5"
+                                },
+                            ]}
+                            onApply={(per) => processData(null, per)}
+
+                        /></div>
+                </DialogTitle>
                 <DialogContent>
                     <ChartComponent data={state.graphData} category={state.sortBy}/>
                 </DialogContent>

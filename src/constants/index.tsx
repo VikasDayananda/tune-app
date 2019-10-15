@@ -1,6 +1,18 @@
+export const colors = [
+    "blue", "pink", 'brown', "green", "purple"
+];
 
-export const INCREMENT_ENTHUSIASM = 'INCREMENT_ENTHUSIASM';
-export type INCREMENT_ENTHUSIASM = typeof INCREMENT_ENTHUSIASM;
+export function parseNumber(x: number) {
+    return Math.floor(x).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
-export const DECREMENT_ENTHUSIASM = 'DECREMENT_ENTHUSIASM';
-export type DECREMENT_ENTHUSIASM = typeof DECREMENT_ENTHUSIASM;
+export function getRandomColor() {
+    return colors[Math.floor(Math.random() * colors.length)];
+
+}
+
+export function isEmpty(obj) {
+    return Object.keys(obj).length === 0 && obj.constructor === Object
+
+}
+

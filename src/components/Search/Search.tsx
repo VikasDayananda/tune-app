@@ -40,57 +40,6 @@ const theme = () => createMuiTheme({
 });
 
 
-interface IProps {
-
-    /** Input identifier. */
-    id: string;
-
-    /** Input Placeholder. */
-    placeholder?: any;
-
-    /** Input Label . */
-    label?: string;
-
-    /**  Controlled or Uncontrolled Value. */
-    value?: string;
-
-    /** Type- text/number/email.
-     * @default "text"
-     * */
-    type?: string;
-
-    /** Custom Classes */
-    className?: string;
-
-    /** On change handler */
-    onChange?: (e) => void;
-
-    /** On click handler */
-    onMouseUp?: (e) => void;
-
-    /** On Focus handler */
-    onKeyDown?: (e) => void;
-
-    /** Disable the input */
-    disabled?: boolean;
-
-    /** Field Validation.*/
-    error?: boolean;
-
-    /** Some information below the field.*/
-    helperText?: string;
-
-    /** Custom Material ui input props.*/
-    InputProps?: any;
-    inputProps?: any;
-
-    /** Field Validation.*/
-    required?: boolean;
-    autoFocus?: boolean;
-    maxLength?: any;
-    endAdornment?: any;
-}
-
 export const Search = (props: any) => {
     return (
         <MuiThemeProvider theme={theme()}>
