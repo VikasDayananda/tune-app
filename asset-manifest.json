@@ -1,21 +1,22 @@
 {
   "files": {
-    "main.css": "/tune-app/static/css/main.b736f213.chunk.css",
-    "main.js": "/tune-app/static/js/main.3e61610e.chunk.js",
-    "main.js.map": "/tune-app/static/js/main.3e61610e.chunk.js.map",
+    "main.css": "/tune-app/static/css/main.4a5bcccc.chunk.css",
+    "main.js": "/tune-app/static/js/main.81e79ec4.chunk.js",
+    "main.js.map": "/tune-app/static/js/main.81e79ec4.chunk.js.map",
     "runtime-main.js": "/tune-app/static/js/runtime-main.e7c96ecd.js",
     "runtime-main.js.map": "/tune-app/static/js/runtime-main.e7c96ecd.js.map",
-    "static/js/2.dace8bc7.chunk.js": "/tune-app/static/js/2.dace8bc7.chunk.js",
-    "static/js/2.dace8bc7.chunk.js.map": "/tune-app/static/js/2.dace8bc7.chunk.js.map",
+    "static/js/2.ed7456e0.chunk.js": "/tune-app/static/js/2.ed7456e0.chunk.js",
+    "static/js/2.ed7456e0.chunk.js.map": "/tune-app/static/js/2.ed7456e0.chunk.js.map",
     "index.html": "/tune-app/index.html",
-    "precache-manifest.cbba45107df28204db6c152350a84154.js": "/tune-app/precache-manifest.cbba45107df28204db6c152350a84154.js",
+    "precache-manifest.f81bce670708224f290c81fb2278bd21.js": "/tune-app/precache-manifest.f81bce670708224f290c81fb2278bd21.js",
     "service-worker.js": "/tune-app/service-worker.js",
-    "static/css/main.b736f213.chunk.css.map": "/tune-app/static/css/main.b736f213.chunk.css.map"
+    "static/css/main.4a5bcccc.chunk.css.map": "/tune-app/static/css/main.4a5bcccc.chunk.css.map",
+    "static/media/graph.png": "/tune-app/static/media/graph.b8386de5.png"
   },
   "entrypoints": [
     "static/js/runtime-main.e7c96ecd.js",
-    "static/js/2.dace8bc7.chunk.js",
-    "static/css/main.b736f213.chunk.css",
-    "static/js/main.3e61610e.chunk.js"
+    "static/js/2.ed7456e0.chunk.js",
+    "static/css/main.4a5bcccc.chunk.css",
+    "static/js/main.81e79ec4.chunk.js"
   ]
 }
