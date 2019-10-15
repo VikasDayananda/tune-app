@@ -1,5 +1,4 @@
-
-export interface StoreState {
-    languageName: string;
-    enthusiasmLevel: number;
+export enum AdType {
+    IMPRESSION = "Impression",
+    CONVERSION = "Conversion",
 }
